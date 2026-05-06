@@ -1,35 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tìm link</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tìm link dễ thương 🌸</title>
 </head>
-<body style="text-align:center; font-family:sans-serif; margin-top:80px;">
+<body>
 
-<h2>Nhập mã để nhận link</h2>
+<h2>Nhập mã</h2>
 
-<input id="code" placeholder="Nhập mã..." style="padding:10px; width:200px;">
-<br><br>
-<button onclick="search()" style="padding:10px 20px;">Tìm</button>
+<input id="code">
+<button onclick="search()">Tìm</button>
+
+<div id="msg"></div>
 
 <script>
-const data = [
-  { code: "abc123", link: "https://google.com" },
-  { code: "xyz999", link: "https://facebook.com" },
-  { code: "linh01", link: "https://shopee.vn" }
-];
+async function search() {
+  let code = document.getElementById("code").value.trim();
 
-function search() {
-  let code = document.getElementById("code").value;
-  let found = data.find(x => x.code === code);
+  let res = await fetch("data.json");
+  let data = await res.json();
 
-  if (found) {
-    window.location.href = found.link;
+  if (data[code]) {
+    window.location.href = data[code];
   } else {
-    alert("Không tìm thấy mã");
+    document.getElementById("msg").innerText = "Không thấy mã";
   }
 }
 </script>
-
-</body>
-</html>
