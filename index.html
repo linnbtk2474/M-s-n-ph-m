@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tìm link</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="text-align:center; font-family:sans-serif; margin-top:80px;">
+
+<h2>Nhập mã để nhận link</h2>
+
+<input id="code" placeholder="Nhập mã..." style="padding:10px; width:200px;">
+<br><br>
+<button onclick="search()" style="padding:10px 20px;">Tìm</button>
+
+<script>
+const data = [
+  { code: "abc123", link: "https://google.com" },
+  { code: "xyz999", link: "https://facebook.com" },
+  { code: "linh01", link: "https://shopee.vn" }
+];
+
+function search() {
+  let code = document.getElementById("code").value;
+  let found = data.find(x => x.code === code);
+
+  if (found) {
+    window.location.href = found.link;
+  } else {
+    alert("Không tìm thấy mã");
+  }
+}
+</script>
+
+</body>
+</html>
